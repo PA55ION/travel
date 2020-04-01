@@ -3,25 +3,26 @@ $font-color: white;
 $sub-heading:#b4b4b4;
 
 .main {
-    margin-left: 200px;
-    margin-top: 50px;
+    margin-left: 40px;
+    margin-top: 10px;
 
     .sub-heading {
         font-family: $font-stack;
         color: $font-color;
-        font-size: 18px;
-        margin-bottom: 35px;
+        font-size: 1em;
+        margin-bottom: 15px;
         opacity: 0.5;
     }
     .description {
         font-family: $font-stack;
         color: $font-color;
-        font-size: 65px;
+        font-size: 5vw;
     }
     .travel-description {
         line-height: 1.6;
         color: $font-color;
         opacity: 0.5;
-        
+        font-size: 1em;
+        margin-bottom: 35px;
     }
 }

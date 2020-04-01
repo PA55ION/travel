@@ -7,7 +7,7 @@
     <title>Travel Planner</title>
 </head>
 <body>
-    <div class='hero-image'>
+    <div class="hero-image">
     <div class='overlay'></div>
     <header>
         <div class='logo'> Travel Planner </div>
@@ -19,13 +19,29 @@
     <p class='description'>Find the best <br />place to travel</p>
     <p class='travel-description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br /> Aliquam est consectetur mollitia commodi unde veniam.</p>
     </section>
-</div>
-    <section>
-        <form>
-            <input type='text' placeholder="location..." />
-        </form>
-       
-    </section>
 </main>
+<!-- form section -->
+   <section>
+       <div class=form-container>
+       <form class='form'>
+        <div class='location'>
+           <input type='text' placeholder='location...' />
+        </div>
+        <div class='date'>
+           <input class='date' type='date' placeholder="when.." />
+        </div>
+        <div class='button'>
+           <button type="button">Search</button>
+        </div>
+       </form>
+    </div>
+   </section>
+</div>
+<!-- result section -->
+    <section>
+       <div id='result'>
+           
+       </div>
+    </section>
 </body>
 </html>
