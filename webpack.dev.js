@@ -12,11 +12,19 @@ module.exports = {
                 test: '/\.js$/',
                 exclude: /node_modules/,
                 loader: "babel-loader"
+            },
+            {
+                test: /\.scss$/,
+                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+            }, 
+            {
+                test: /\.(png|jpg|gif)$/,
+                loader: 'url-loader'
             }
         ]
     },
     plugins: [
-        new HtmlWebPackPlugin({
+       new HtmlWebPackPlugin({
             template: "./src/client/views/index.html",
             filename: "./index.html",
         }),

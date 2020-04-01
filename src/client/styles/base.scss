@@ -1,0 +1,13 @@
+* {
+    min-height: 50%;
+    min-width: 1024px;
+}
+body {
+    background-image: url('../../assets/background.jpg');
+    background-position:  center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+    // background-color: #cccccc; /* Used if the image is unavailable */
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
