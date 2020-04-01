@@ -1,5 +1,12 @@
+$font-color: white;
+
 header {
     display: flex;
     justify-content: space-between;
-    padding: 20px 70px;
+    padding: 30px 200px;
+    color: $font-color;
+    // font-family: 'Quicksand', sans-serif;
+    font-family: adobe-caslon-pro, serif;
+    font-style: normal;
+
 }

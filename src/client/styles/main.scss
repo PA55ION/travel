@@ -1,0 +1,27 @@
+$font-stack: 'adobe-caslon-pro, serif';
+$font-color: white;
+$sub-heading:#b4b4b4;
+
+.main {
+    margin-left: 200px;
+    margin-top: 50px;
+
+    .sub-heading {
+        font-family: $font-stack;
+        color: $font-color;
+        font-size: 18px;
+        margin-bottom: 35px;
+        opacity: 0.5;
+    }
+    .description {
+        font-family: $font-stack;
+        color: $font-color;
+        font-size: 65px;
+    }
+    .travel-description {
+        line-height: 1.6;
+        color: $font-color;
+        opacity: 0.5;
+        
+    }
+}
