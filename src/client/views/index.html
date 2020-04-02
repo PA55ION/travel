@@ -23,15 +23,16 @@
 <!-- form section -->
    <section>
        <div class=form-container>
-       <form class='form'>
+       <form class='form' onsubmit='return Client.handleSubmit(event)'>
         <div class='location'>
-           <input type='text' placeholder='location...' />
+           <input type='text' id='location'  placeholder='location...' />
         </div>
         <div class='date'>
-           <input class='date' type='date' placeholder="when.." />
+           <input id='date' type='date'/>
         </div>
         <div class='button'>
-           <button type="button">Search</button>
+           <button id='search-button' type="button" value="submit" >Search</button>
+           <!-- <input type="submit" id='search-button' value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)"> -->
         </div>
        </form>
     </div>
@@ -43,5 +44,6 @@
            
        </div>
     </section>
+    <script src='../js/handleSubmit.js'></script>
 </body>
 </html>

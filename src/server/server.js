@@ -1,5 +1,11 @@
 projectData = {}
 
+if(process.env.NODE_ENV !== 'production') {
+    require ('dotenv').config()
+}
+
+const DARKSKY_API_KEY = process.env.DARKSKY_API_KEY
+
 //COMMENT express to run server and route
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -27,11 +33,18 @@ app.get('/', function (req, res) {
     // res.sendFile(path.resolve('src/client/views/index.html'))
 });
 
-// app.get('/weather', (req, res) => {
-    
-// });
+app.get('/all', (req, res) => {
+    res.send(projectData)
+});
 
-// app.get('/')
+app.post('/weather', (req, res) => {
+    const latitude = `${req.body.latitude}`
+    const longitude = `${req.body.longitude}`
+    projectData = req.body;
+    console.log("post request: received");
+    console.log(projectData);
+    res.send('post received');
+})
 
 
 module.exports = app;

@@ -9,20 +9,23 @@ $sub-heading:#b4b4b4;
     .sub-heading {
         font-family: $font-stack;
         color: $font-color;
-        font-size: 1em;
+        font-size: 14px;
         margin-bottom: 15px;
         opacity: 0.5;
     }
     .description {
         font-family: $font-stack;
         color: $font-color;
-        font-size: 5vw;
+        font-size: 10vw;
+        margin-bottom: 15px;
     }
     .travel-description {
         line-height: 1.6;
         color: $font-color;
         opacity: 0.5;
-        font-size: 1em;
-        margin-bottom: 35px;
+        font-size: 14px;
+        margin-right: 45px;
+        font-family: $font-stack;
+        
     }
 }
