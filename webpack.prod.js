@@ -7,13 +7,26 @@ module.exports = {
     entry: "./src/client/index.js",
     mode: "production",
     devtool: "source-map",
-    state: "verbose",
+    output: {
+        libraryTarget: "var",
+        library: "Client",
+        path: path.resolve(__dirname, 'dist')
+    },
+    stats: 'verbose',
     module: {
         rules: [
             {
                 test: "/\.js$/",
                 exclude: /node_modules/,
                 loader: "babel-loader"
+            },
+            {
+                test: /\.scss$/,
+                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+            }, 
+            {
+                test: /\.(png|jpg|gif)$/,
+                loader: 'url-loader'
             }
         ]
     },

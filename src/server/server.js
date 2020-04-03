@@ -6,11 +6,13 @@ if(process.env.NODE_ENV !== 'production') {
 
 const DARKSKY_API_KEY = process.env.DARKSKY_API_KEY
 
+
 //COMMENT express to run server and route
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+const axios = require('axios');
 
 
 //COMMENT start up instance of app
@@ -37,13 +39,36 @@ app.get('/all', (req, res) => {
     res.send(projectData)
 });
 
+app.get('/city', (req, res) => {
+    let data = req.body;
+    console.log(req)
+
+    newData = {
+        latitude: newData.latitude,
+        longitude: newData.longitude,
+        countryName: newData.countryName,
+        countryCode: newData.countryCode,
+        time: newData.time
+    }
+    projectData.push(newData)
+    res.send(projectData);
+})
+
 app.post('/weather', (req, res) => {
-    const latitude = `${req.body.latitude}`
-    const longitude = `${req.body.longitude}`
+    const url = `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${req.body.latitude},${req.body.longitude}?units=auto`
+
+    axios({
+        url: url,
+        responseType: 'json'
+      }).then(data => res.json(data.data.currently))
+      .catch(error => {
+          console.log('error', error)
+      })
+    
     projectData = req.body;
     console.log("post request: received");
     console.log(projectData);
-    res.send('post received');
+    // res.send('post received');
 })
 
 
