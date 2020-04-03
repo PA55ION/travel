@@ -11,9 +11,15 @@ let post;
 export function handleSubmit(e) {
     e.preventDefault();
     const location = document.getElementById('location').value;
-    const date = document.getElementById('date').value
+    const departing = document.getElementById('date').value
+    const date = new Date();
+    const time = date.getTime();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    console.log(`${departing}T${hours}:${minutes}:${seconds}`)
     console.log(location)
-    console.log(date)
+    console.log(departing)
    
     getCityInfo(`${GEONAMES_URL}${location}${GEONAMES_USERNAME}`)
     .then(function(data) {
@@ -25,7 +31,8 @@ export function handleSubmit(e) {
             },
             body: JSON.stringify({
                 latitude: post.geonames[0].lat,
-                longitude: post.geonames[0].lng
+                longitude: post.geonames[0].lng,
+                departing: `${departing}T${hours}:${minutes}:${seconds}`
             })
         }).then(res => res.json())
         .then(data => {

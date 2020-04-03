@@ -55,7 +55,7 @@ app.get('/city', (req, res) => {
 })
 
 app.post('/weather', (req, res) => {
-    const url = `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${req.body.latitude},${req.body.longitude}?units=auto`
+    const url = `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${req.body.latitude},${req.body.longitude},${req.body.departing}?units=auto`
 
     axios({
         url: url,
