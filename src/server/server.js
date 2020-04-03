@@ -26,8 +26,8 @@ app.use(express.static('dist'));
 console.log(__dirname)
 
 //COMMENT spin up the server
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!')
+app.listen(8000, function () {
+    console.log('Example app listening on port 8000!')
 });
 
 app.get('/', function (req, res) {
@@ -69,6 +69,8 @@ app.post('/weather', (req, res) => {
     console.log("post request: received");
     console.log(projectData);
     // res.send('post received');
+
+    console.log(req.body)
 })
 
 
