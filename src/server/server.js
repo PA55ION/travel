@@ -4,7 +4,8 @@ if(process.env.NODE_ENV !== 'production') {
     require ('dotenv').config()
 }
 
-const DARKSKY_API_KEY = process.env.DARKSKY_API_KEY
+const DARKSKY_API_KEY = process.env.DARKSKY_API_KEY;
+const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
 
 
 //COMMENT express to run server and route
@@ -39,23 +40,10 @@ app.get('/all', (req, res) => {
     res.send(projectData)
 });
 
-app.get('/city', (req, res) => {
-    let data = req.body;
-    console.log(req)
-
-    newData = {
-        latitude: newData.latitude,
-        longitude: newData.longitude,
-        countryName: newData.countryName,
-        countryCode: newData.countryCode,
-        time: newData.time
-    }
-    projectData.push(newData)
-    res.send(projectData);
-})
-
 app.post('/weather', (req, res) => {
-    const url = `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${req.body.latitude},${req.body.longitude},${req.body.departing}?units=auto`
+    const url = `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${req.body.latitude},${req.body.longitude},${req.body.departure}?units=auto`
+    const cityName = `${req.body.cityName}`
+    const dates = `${req.body.departure}`
 
     axios({
         url: url,
@@ -71,6 +59,27 @@ app.post('/weather', (req, res) => {
     // res.send('post received');
 
     console.log(req.body)
+});
+
+app.post('/img', (req, res) => {
+    const url = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${req.body.cityName}&image_type=photo`;
+    
+
+    axios({
+        url: url,
+        responseType: 'json'
+    }).then(data => res.json(data.data))
+    .catch(err => {
+        console.log('err', err)
+    })
+    projectData = req.body;
+    console.log("pixabay request: received");
+    console.log(projectData);
+    // res.send('post received');
+    console.log(req.body)
+})
+app.get('/city', (req, res) => {
+    res.send(projectData);
 })
 
 
