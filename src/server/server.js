@@ -24,6 +24,10 @@ app.use(bodyParser.json());
 //COMMENT Middle ware
 app.use(cors());
 app.use(express.static('dist'));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
 console.log(__dirname)
 
 //COMMENT spin up the server
@@ -32,8 +36,11 @@ app.listen(8000, function () {
 });
 
 app.get('/', function (req, res) {
-    res.sendFile('dist/index.html')
+    // res.sendFile('dist/index.html')
     // res.sendFile(path.resolve('src/client/views/index.html'))
+    const file = fs.readFileSync('client/index.html', 'utf8');
+    const newFile = file.replace('"{process.env.BROWSER_REFRESH_URL}"', process.env.BROWSER_REFRESH_URL);
+    res.send(newFile);
 });
 
 app.get('/all', (req, res) => {
