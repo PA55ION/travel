@@ -37,10 +37,8 @@ app.listen(8000, function () {
 
 app.get('/', function (req, res) {
     // res.sendFile('dist/index.html')
-    // res.sendFile(path.resolve('src/client/views/index.html'))
-    const file = fs.readFileSync('client/index.html', 'utf8');
-    const newFile = file.replace('"{process.env.BROWSER_REFRESH_URL}"', process.env.BROWSER_REFRESH_URL);
-    res.send(newFile);
+    res.sendFile(path.resolve('src/client/views/index.html'))
+   
 });
 
 app.get('/all', (req, res) => {
