@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <script defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiLd1dSaVaSfsrNA_67wr9jaUVc9qWgpw&libraries=places"></script>
+    <!-- <script defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiLd1dSaVaSfsrNA_67wr9jaUVc9qWgpw&libraries=places"></script> -->
+   
     <title>Travel Planner</title>
 </head>
 <body>
@@ -31,6 +32,22 @@
         <div class='date'>
            <input id='date' type='date'/>
         </div>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+
+      </ul>
         <div class='button'>
            <button id='search-button' type="button" value="submit" >Search</button>
         </div>
@@ -41,8 +58,8 @@
 <!-- result section -->
     <section>
        <div id='result'>
-        <div class="max-w-sm rounded overflow-hidden shadow-lg" >
-            <!-- <img class="w-full" id='img' src="" alt="Sunset in the mountains"> -->
+        <!-- <div class="max-w-sm rounded overflow-hidden shadow-lg" >
+            <img class="w-full" id='img' src="" alt="Sunset in the mountains">
                 <div id='imgContainer'></div>
             <div class="px-6 py-4">
               <div class="font-bold text-xl mb-2" id='city'></div>
@@ -55,12 +72,40 @@
               <span id="tags" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"></span>
               <span id="likes" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"></span>
             </div>
-          </div>
-           <h1 id='city'>City: </h1>
+          </div> -->
+          <!-- <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <div id='imgContainer'></div>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">John Smith</p>
+                  <p class="subtitle is-6">@johnsmith</p>
+                </div>
+              </div>
+          
+              <div class="content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                <a href="#">#css</a> <a href="#">#responsive</a>
+                <br>
+                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+              </div>
+            </div>
+          </div> -->
+           <!-- <h1 id='city'>City: </h1>
            <p id='leaving-date'>Date: </p>
            <p id='temp'>Temp: </p>
           
-           <p></p>
+           <p></p> -->
        </div>
     </section>
     <!-- <script src='../js/handleSubmit.js'></script> -->
