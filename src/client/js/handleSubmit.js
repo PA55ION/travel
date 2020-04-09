@@ -5,7 +5,7 @@ const GEONAMES_USERNAME = '&maxRows=1&username=pa55ion';
 // const PIXABAY_URL = 'https://pixabay.com/api/';
 // const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
 let location = document.getElementById('location').value;
-let departure = document.getElementById('date').value;
+let departure = new Date(document.getElementById('date').value).getTime();
 const date = new Date();
 const time = date.getTime();
 const hours = date.getHours();
@@ -56,7 +56,13 @@ export function handleSubmit(e) {
     console.log(departure)
     leaving = `${departure}T${hours}:${minutes}:${seconds}`
     cityName = location;
-    dates = departure;
+    // dates = departure;
+
+    const days = Client.countdown(departure);
+    document.getElementById('days').innerHTML = cityName + ',' + ' is ' + days + ' days away'
+    console.log(days)
+   
+
   
     getCityInfo(`${GEONAMES_URL}${location}${GEONAMES_USERNAME}`)
     .then(function(data) {
@@ -103,7 +109,7 @@ const postWeather = async (url = '', data = {}) => {
         longitude: post.geonames[0].lng,
         departure: leaving,
         cityName: post.geonames [0].name,
-        date: dates,
+        // date: dates,
        })
     }).then(res => res.json())
     .then(data => {
@@ -138,9 +144,6 @@ const getImage = async (url = '', pixabayData = {}) => {
      })
  }
 
- function countDown() {
-     
- }
 
 //COMMENT update ui screen
 let travel = document.getElementById('travel-info')
@@ -152,6 +155,9 @@ function updateUI(data) {
 //    travel.innerHTML = cityInfo
     console.log(data.temperature)
     console.log(cityName)
+
+
+    
 }
 
 let type = document.getElementById('types')
@@ -172,6 +178,7 @@ function updateImg(imgData) {
 }
 
 
-
 submit.addEventListener('click', handleSubmit)
+
+
 

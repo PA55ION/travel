@@ -5,14 +5,18 @@ import './styles/responsive.scss';
 import './styles/form.scss';
 import { handleSubmit } from './js/handleSubmit'
 import { validateForm } from './js/checkFormInput'
-import background from '../assets/background.jpg'
+import { countdown } from './js/countdown'
+// import background from '../media/background.jpg'
+import './media/'
 
-const DARKSKY_API_KEY = process.env.DARKSKY_API_KEY
+
 
 console.log(validateForm)
-console.log(DARKSKY_API_KEY)
+
+
 
 export { 
     handleSubmit,
-    validateForm
+    validateForm,
+    countdown
 }
