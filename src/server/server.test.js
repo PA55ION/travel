@@ -20,7 +20,7 @@ describe('GET /all', function() {
 
 
 describe('POST /weather', function() {
-  it('responds with json', function(done) {
+  it('should return 200 from POST /', function(done) {
     request(app)
       .post('/weather')
       .send({url: 'https://api.darksky.net/forecast/d3b156d2410201a748f410b06b5ae833/51.50853,-0.12574,2020-04-30T20:36:28?units=auto'})
