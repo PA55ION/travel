@@ -1,4 +1,4 @@
-projectData = {}
+let projectData = {}
 
 if(process.env.NODE_ENV !== 'production') {
     require ('dotenv').config()
@@ -31,9 +31,9 @@ app.use((req, res, next) => {
 console.log(__dirname)
 
 //COMMENT spin up the server
-app.listen(8000, function () {
-    console.log('Example app listening on port 8000!')
-});
+// app.listen(8000, function () {
+//     console.log('Example app listening on port 8000!')
+// });
 
 app.get('/', function (req, res) {
     // res.sendFile('dist/index.html')
@@ -80,7 +80,7 @@ app.post('/img', (req, res) => {
     projectData = req.body;
     console.log("pixabay request: received");
     console.log(projectData);
-    // res.send('post received');
+    // // res.send('post received');
     console.log(req.body)
 })
 app.get('/city', (req, res) => {

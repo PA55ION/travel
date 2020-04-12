@@ -2,15 +2,9 @@
 const submit = document.getElementById('search-button');
 const GEONAMES_URL = 'http://api.geonames.org/searchJSON?q=';
 const GEONAMES_USERNAME = '&maxRows=1&username=pa55ion';
-// const PIXABAY_URL = 'https://pixabay.com/api/';
-// const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
-let location = document.getElementById('location').value;
-let departure = new Date(document.getElementById('date').value).getTime();
-const date = new Date();
-const time = date.getTime();
-const hours = date.getHours();
-const minutes = date.getMinutes();
-const seconds = date.getSeconds();
+const PIXABAY_API_KEY = '15817547-0820fe2163586163356300c93'
+const PIXABAY_URL = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=`;
+let restCountry = 'https://restcountries.eu/rest/v2/capital/'
 
 //COMMENT this variable will store multible varialble such as date, minutes, hours, and seconds to use it in Darksky API in postWather
 let leaving;
@@ -35,12 +29,14 @@ export function handleSubmit(e) {
     e.preventDefault();
     let location = document.getElementById('location').value;
     let departure = document.getElementById('date').value;
+    let countdownDate = new Date(document.getElementById('date').value).getTime();
     let date = new Date();
     let time = date.getTime();
     let hours = date.getHours();
     let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
+    let seconds = date.getSeconds();    
 
+    //Add 0 to time if a digit is a single digit to use it in darksky api
     if(hours < 10) {
         hours = "0" + hours;
     } 
@@ -51,33 +47,39 @@ export function handleSubmit(e) {
         minutes = "0" + minutes;
     } 
 
-    console.log(`${hours}:${minutes}:${seconds}`)
-    console.log(location)
-    console.log(departure)
     leaving = `${departure}T${hours}:${minutes}:${seconds}`
     cityName = location;
     // dates = departure;
-
-    const days = Client.countdown(departure);
-    document.getElementById('days').innerHTML = cityName + ',' + ' is ' + days + ' days away'
-    console.log(days)
+    let days = Client.countdown(countdownDate)
    
-
+    dates = departure;
   
     getCityInfo(`${GEONAMES_URL}${location}${GEONAMES_USERNAME}`)
     .then(function(data) {
         post = data;
-            getCityInfo('http://localhost:8000/city', {
+            getCityInfo('http://localhost:3000/city', {
                 locations: location,
                 name: post.geonames[0].name,
                 latitude: post.geonames[0].lat,
                 longitude: post.geonames[0].lng,
             })
     }).then(function(data) {
-        postWeather('http://localhost:8000/weather', {
+        postWeather('http://localhost:3000/weather', {
         })
     }).then(function(data) {
-        getImage('http://localhost:8000/img')
+        getImage('http://localhost:3000/img', {
+        })
+    })
+
+    document.getElementById('travel-info').innerHTML = `Your trip to ${cityName} is ${days} days away. It's time to Pack you bag :)`
+
+    fetch(`${restCountry}${cityName}`)
+    .then(res => res.json())
+    .then(function(res) {
+        console.log(res);
+        document.getElementById('currencies').innerHTML = 'Currency: ' + res[0].currencies[0].name;
+        document.getElementById('population').innerHTML = 'Population: ' + res[0].population.toLocaleString('en-US')
+        document.getElementById('language').innerHTML = 'Language: ' + res[0].languages[0].name
     })
 }
 
@@ -109,7 +111,7 @@ const postWeather = async (url = '', data = {}) => {
         longitude: post.geonames[0].lng,
         departure: leaving,
         cityName: post.geonames [0].name,
-        // date: dates,
+       
        })
     }).then(res => res.json())
     .then(data => {
@@ -133,12 +135,10 @@ const getImage = async (url = '', pixabayData = {}) => {
             // cityName: cityName
             cityName: post.geonames[0].name,
         })
-    //  body: JSON.stringify(data)
      }).then(res => res.json())
      .then(pixabayData => {
          imgData = pixabayData
          console.log("pixabay response:", imgData)
-        //  console.log('pix:', pixabayData.hits[0].id);
          console.log('picture:', imgData.hits[0].pageURL);
          updateImg(imgData)
      })
@@ -147,17 +147,23 @@ const getImage = async (url = '', pixabayData = {}) => {
 
 //COMMENT update ui screen
 let travel = document.getElementById('travel-info')
+let weather = document.getElementById('weather')
+let container = document.getElementById('container');
+let summary = document.getElementById('summary');
 
 function updateUI(data) {
-   temp.innerHTML = data.temperature;
+   temp.innerHTML = `Typical weather for this day is ${data.temperature}`;
    city.innerHTML = cityName;
-   leavingDate.innerHTML = dates;
+   leavingDate.innerHTML = `Departure date: ${dates}`;
+   summary.innerHTML = `Weather condition is ${data.summary}`;
 //    travel.innerHTML = cityInfo
     console.log(data.temperature)
+    console.log(data.summary)
     console.log(cityName)
-
-
-    
+    let animation = document.getElementById('parent');
+    animation.classList.add('animation')
+    let background = document.getElementById('hero-image');
+    background.classList.add('filter');
 }
 
 let type = document.getElementById('types')
@@ -171,14 +177,22 @@ function updateImg(imgData) {
     newImg.setAttribute('src', imgData.hits[0].largeImageURL)
     newImg.setAttribute('id', 'img')
     img.appendChild(newImg)
-    // img.innerHTML = `<img class="w-full" id='img' src="${imgData.hits[0].largeImageURL}" alt="Sunset in the mountains">`
-   type.innerHTML = imgData.hits[0].type;
-   tags.innerHTML = imgData.hits[0].tags;
-   likes.innerHTML = imgData.hits[0].likes;
+
+    
+
+   type.innerHTML = `<span id="likes" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">${imgData.hits[0].type}</span>`;
+   tags.innerHTML = `<span id="likes" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">${imgData.hits[0].tags}</span>`;
+   likes.innerHTML =  `<span id="likes" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">${imgData.hits[0].likes}</span>`;
 }
 
+// function myFunction() {
+//     let animation = document.getElementById('parent');
+//     animation.classList.add('animation')
+//  }
 
-submit.addEventListener('click', handleSubmit)
+
+submit.addEventListener('click', handleSubmit);
+
 
 
 

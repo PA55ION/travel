@@ -29,14 +29,6 @@ module.exports = {
                 loader: 'url-loader'
             },
             {
-                test:  /\.(png|jpe?g|gif)$/i,
-                loader: "file-loader"
-                options: {
-                    name:'[name].[ext]',
-                    outputPath: 'imgs'
-                }
-            },
-            {
                 test:/\.html$/,
                 exclude:/node_modules/,
                 use: ['html-loader']

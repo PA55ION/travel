@@ -1,4 +1,4 @@
-$font-stack: 'adobe-caslon-pro, serif';
+$font-stack: 'Barlow', sans-serif;;
 $font-color: white;
 $sub-heading:#b4b4b4;
 
@@ -39,10 +39,12 @@ input {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-family: $font-stack;
 }
 input[type="date"] {
     color: $sub-heading;
     height: 50px;
+    font-family: $font-stack;
 }
 
 
