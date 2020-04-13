@@ -2,19 +2,15 @@ $text-color: #e9ebf0;
 
 
 #imgContainer {
-    //margin-top: 23px;
-    // flex-direction: column;
     height: auto;
     width: 100%;
-    // box-shadow: 3px 2px 3px 2px rgba(0, 0, 0, 0.4);
     border-radius: 15px;
-    position: relative
-    // top: -165px;
+    position: relative;
 }
 
 .text-container {
-    padding: 1em;
-    
+    padding: 3em;
+    text-align: left;
 }
 
 p {
@@ -30,54 +26,89 @@ p {
 //COMMENT style for 
 
 #result {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        // height: 100%;
-        position: absolute;
-        top: 0px;
-        
-        
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    // height: 100%;
+    position: absolute;
+    top: 0px;
+}
 
-    .div1 { 
-        width: 100%;
-    }
-    .div2 { 
-        width: 100%;
-        max-width: 350px;
-    }
+.div1 {
+    width: 100%;
+}
 
-    .animation {
-        animation-name: focus-in-contract;
-        animation-duration: 2s;
+.div2 {
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.animation {
+    animation-name: focus-in-contract;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    background: rgba(0, 0, 0, .5);
+}
+
+.close-btn {
+    color: $text-color;
+    text-decoration: none;
+    cursor: pointer;
+    width: 135px;
+    height: 45px;
+    border-radius: 35px;
+    background: linear-gradient(to left, #4568dc, #b06ab3);
+    text-transform: uppercase;
+    text-align: center;
+
+    &:hover {
+        cursor: pointer;
+        background: linear-gradient(to right, #4568dc, #b06ab3);
+        -webkit-animation-name: pulse;
+        animation-name: pulse;
+        animation-duration: 1s;
         animation-timing-function: ease;
         animation-delay: 0s;
         animation-iteration-count: 1;
         animation-direction: normal;
         animation-fill-mode: none;
-        background: rgba(0,0,0,.5);
+    }
+}
+
+@keyframes pulse {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
     }
 
-    #close:hover,
-#close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
 }
 
 
-      @keyframes focus-in-contract {
-        0%{
-          letter-spacing: 1em;
-          filter: blur(12px);
-          opacity: 0;
-        }
-        100%{
-          filter: blur(0);
-          opacity: 1;
-        }
-      }
-      
+@keyframes focus-in-contract {
+    0% {
+        letter-spacing: 1em;
+        filter: blur(12px);
+        opacity: 0;
+    }
+
+    100% {
+        filter: blur(0);
+        opacity: 1;
+    }
+}

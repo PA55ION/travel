@@ -14,7 +14,6 @@ let post;
 let cityName;
 let countryName;
 let dates;
-let restApi;
 //COMMENT this will store data from Pixabay API
 let imgData;
 
@@ -50,8 +49,9 @@ export function handleSubmit(e) {
     leaving = `${departure}T${hours}:${minutes}:${seconds}`
     cityName = location;
     dates = departure;
-   
     let days = Client.countdown(countdownDate)
+    document.getElementById('travel-info').innerHTML = `Your trip to ${cityName} is ${days} days away. It's time to Pack you bag :)`
+
 
     getCityInfo(`${GEONAMES_URL}${location}${GEONAMES_USERNAME}`)
         .then(function (data) {
@@ -66,15 +66,19 @@ export function handleSubmit(e) {
             postWeather('http://localhost:3000/weather', {})
         }).then(function (data) {
             getImage('http://localhost:3000/img', {})
-        }).then(function() {
-            document.getElementById('travel-info').innerHTML = `Your trip to ${cityName} is ${days} days away. It's time to Pack you bag :)`
+        }).then(function(data) {
             getCity(`${restCountry}${cityName}`)
-        .then(function (data) {
-            document.getElementById('currencies').innerHTML = 'Currency: ' + data[0].currencies[0].name;
-            document.getElementById('population').innerHTML = 'Population: ' + data[0].population.toLocaleString('en-US')
-            document.getElementById('language').innerHTML = 'Language: ' + data[0].languages[0].name;
+        .then(function(data) {
+            getCity('http://localhost:3000/all', {
+            }, 3000)
         })
-    })
+    });
+
+    async function init() {
+        await getImage('http://localhost:3000/img');
+    
+        getCity('http://localhost:3000/all');
+    }
 }
 
 
@@ -142,8 +146,8 @@ const getCity = async (url = ``) => {
 
     try {
         const data = await request.json();
-        console.log("Get City Response: ", data)
-        return data;
+        console.log('R:', data)
+        updateCityInfo(data)
     } catch (error) {
         console.log('error', error)
     }
@@ -164,14 +168,21 @@ let background = document.getElementById('hero-image');
 
 
 function updateUI(data) {
-    temp.innerHTML = `Typical weather for this day is ${data.temperature}`;
+    temp.innerHTML = 'Typical weather for this day is ' +  Math.floor(data.temperature) + ' °F';
     city.innerHTML = cityName;
     leavingDate.innerHTML = `Departure date: ${dates}`;
     summary.innerHTML = `Weather condition is ${data.summary}`;
-    close.innerHTML = `<span id="close" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">Close</span>`;
+    close.innerHTML = 'Close';
     result.classList.add('animation')
     background.classList.add('filter');
-   
+    close.classList.add('close-btn')
+}
+
+function updateCityInfo(data) {
+    document.getElementById('currencies').innerHTML = 'Currency: ' +  data[0].currencies[0].name;
+    console.log(data[0].languages[0].name)
+    document.getElementById('population').innerHTML = 'Population: ' + data[0].population.toLocaleString('en-US')
+    document.getElementById('language').innerHTML = 'Language: ' +  data[0].languages[0].name;
 }
 
 
@@ -183,15 +194,10 @@ function updateImg(imgData) {
     newImg.setAttribute('id', 'img')
     img.appendChild(newImg)
 
-    type.innerHTML = `<span id="likes" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">${imgData.hits[0].type}</span>`;
-    tags.innerHTML = `<span id="likes" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">${imgData.hits[0].tags}</span>`;
-    likes.innerHTML = `<span id="likes" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">${imgData.hits[0].likes}</span>`;
+    tags.innerHTML = `<span id="tags" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">${imgData.hits[0].tags}</span>`;
 }
 
-// result.onclick = function(){
-//     result.style.display = "block";
-//   }
-
+//COMMENT close modal when user click on the button and reload the page
   close.onclick = function() { 
     result.style.display = "none";
     result.classList.remove('animation')
