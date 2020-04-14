@@ -9,5 +9,7 @@ Used multiple apis to create travel planner. First use geonames api to get longi
 3. Create an account with Pixabay.
 4. Integrate the REST Countries API to pull in data for the country being visited.
 
+![This is what finished project look like!](/src/client/media/finish-project.png "final result")
+
 Download the project and run `npm install`
 

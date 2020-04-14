@@ -205,7 +205,6 @@ $bg-color: white;
   }
 }
 
-
 @media only screen and (min-width: 1200px) {
   header {
     margin-left: 30px;
@@ -236,6 +235,9 @@ $bg-color: white;
   }
   .sub-heading, .travel-description {
     font-size: 1.2vw;
+  }
+  .button {
+    left: 60px;
   }
 }
 
