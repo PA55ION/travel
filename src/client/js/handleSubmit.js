@@ -63,21 +63,21 @@ export function handleSubmit(e) {
                 longitude: post.geonames[0].lng,
             })
         }).then(function (data) {
-            postWeather('http://localhost:3000/weather', {})
+            postWeather('http://localhost:8000/weather', {})
         }).then(function (data) {
-            getImage('http://localhost:3000/img', {})
+            getImage('http://localhost:8000/img', {})
         }).then(function(data) {
             getCity(`${restCountry}${cityName}`)
         .then(function(data) {
-            getCity('http://localhost:3000/all', {
-            }, 3000)
+            getCity('http://localhost:8000/all', {
+            })
         })
     });
 
     async function init() {
-        await getImage('http://localhost:3000/img');
+        await getImage('http://localhost:8000/img');
     
-        getCity('http://localhost:3000/all');
+        getCity('http://localhost:8000/all');
     }
 }
 
@@ -194,7 +194,7 @@ function updateImg(imgData) {
     newImg.setAttribute('id', 'img')
     img.appendChild(newImg)
 
-    tags.innerHTML = `<span id="tags" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">${imgData.hits[0].tags}</span>`;
+    // tags.innerHTML = `<span id="tags" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">${imgData.hits[0].tags}</span>`;
 }
 
 //COMMENT close modal when user click on the button and reload the page

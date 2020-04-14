@@ -5,7 +5,7 @@ import './styles/responsive.scss';
 import './styles/form.scss';
 import './styles/result.scss';
 import { handleSubmit } from './js/handleSubmit'
-import { validateForm } from './js/checkFormInput'
+import { validateForm } from './js/validateForm'
 import { countdown } from './js/countdown'
 import background from './media/background.jpg'
 
