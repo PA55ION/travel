@@ -37,13 +37,13 @@ export function handleSubmit(e) {
 
     //Add 0 to time if a digit is a single digit to use it in darksky api
     if (hours < 10) {
-        hours = "0" + hours;
+        hours = '0' + hours;
     }
     if (seconds < 10) {
-        seconds = "0" + seconds;
+        seconds = '0' + seconds;
     }
     if (minutes < 10) {
-        minutes = "0" + minutes;
+        minutes = '0' + minutes;
     }
 
     leaving = `${departure}T${hours}:${minutes}:${seconds}`
@@ -81,7 +81,7 @@ const getCityInfo = async (url = '') => {
 
     try {
         const data = await request.json();
-        console.log("Get Response: ", data)
+        console.log('Get Response: ', data)
         return data;
     } catch (error) {
         console.log('error', error)
@@ -105,7 +105,7 @@ const postWeather = async (url = '', data = {}) => {
             })
         }).then(res => res.json())
         .then(data => {
-            console.log("post response:", data)
+            console.log('post response:', data)
             console.log(data);
             updateUI(data)
         }).catch(err => {
@@ -127,8 +127,6 @@ const getImage = async (url = '', pixabayData = {}) => {
         }).then(res => res.json())
         .then(pixabayData => {
             imgData = pixabayData
-            console.log("pixabay response:", imgData)
-            console.log('picture:', imgData.hits[0].pageURL);
             updateImg(imgData)
         })
 }
@@ -137,7 +135,6 @@ const getCity = async (url = ``) => {
     const request = await fetch(url)
     try {
         const data = await request.json();
-        console.log('R:', data)
         updateCityInfo(data)
     } catch (error) {
         console.log('error', error)
@@ -162,7 +159,7 @@ function updateUI(data) {
     temp.innerHTML = 'Typical weather for this day is ' +  Math.floor(data.temperature) + ' °F';
     city.innerHTML = cityName;
     leavingDate.innerHTML = `Departure date: ${dates}`;
-    summary.innerHTML = `Weather condition is ${data.summary}`;
+    // summary.innerHTML = `Weather condition is ${data.summary}`;
     close.innerHTML = 'Close';
     result.classList.add('animation')
     background.classList.add('filter');
@@ -194,7 +191,7 @@ function updateImg(imgData) {
 
 //COMMENT close modal when user click on the button and reload the page
   close.onclick = function() { 
-    result.style.display = "none";
+    result.style.display = 'none';
     result.classList.remove('animation')
     background.classList.remove('filter')
     window.location.reload();
