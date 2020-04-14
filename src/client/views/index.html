@@ -25,6 +25,7 @@
     </section>
 </main>
 <!-- form section -->
+<!-- style inspiration https://dribbble.com/shots/9683197-Traveland-website -->
    <section>
        <div class=form-container>
        <form class='form' onsubmit='return Client.handleSubmit(event)'>
@@ -85,5 +86,14 @@
           <button id='close'></button>
         </div>
     </section>
+    <script>
+      // Check that service workers are supported
+      if ('serviceWorker' in navigator) {
+          // Use the window load event to keep the page load performant
+          window.addEventListener('load', () => {
+              navigator.serviceWorker.register('/service-worker.js');
+          });
+      }
+  </script>
 </body>
 </html>

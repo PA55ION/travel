@@ -8,9 +8,9 @@ let restCountry = 'https://restcountries.eu/rest/v2/capital/'
 
 //COMMENT this variable will store multible varialble such as date, minutes, hours, and seconds to use it in Darksky API in postWather
 let leaving;
-//COMMENT post variable will store data from geoname api
+//COMMENT post variable will store data from geonames api
 let post;
-//COMMENT city name variable will store geoname city to pass into getImage
+//COMMENT city name variable will store geonames city to pass into getImage
 let cityName;
 let countryName;
 let dates;
@@ -50,7 +50,6 @@ export function handleSubmit(e) {
     cityName = location;
     dates = departure;
     let days = Client.countdown(countdownDate)
-    document.getElementById('travel-info').innerHTML = `Your trip to ${cityName} is ${days} days away. It's time to Pack you bag :)`
 
 
     getCityInfo(`${GEONAMES_URL}${location}${GEONAMES_USERNAME}`)
@@ -63,22 +62,16 @@ export function handleSubmit(e) {
                 longitude: post.geonames[0].lng,
             })
         }).then(function (data) {
-            postWeather('http://localhost:8000/weather', {})
+            postWeather('http://localhost:3000/weather', {})
         }).then(function (data) {
-            getImage('http://localhost:8000/img', {})
+            getImage('http://localhost:3000/img', {})
         }).then(function(data) {
-            getCity(`${restCountry}${cityName}`)
-        .then(function(data) {
-            getCity('http://localhost:8000/all', {
-            })
-        })
+            setTimeout(() => {
+                document.getElementById('travel-info').innerHTML = `Your trip to ${cityName} is ${days} days away. It's time to Pack you bag :)`
+                getCity(`${restCountry}${cityName}`)
+            }, 1000)
+        // 
     });
-
-    async function init() {
-        await getImage('http://localhost:8000/img');
-    
-        getCity('http://localhost:8000/all');
-    }
 }
 
 
@@ -129,7 +122,6 @@ const getImage = async (url = '', pixabayData = {}) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                // cityName: cityName
                 cityName: post.geonames[0].name,
             })
         }).then(res => res.json())
@@ -143,7 +135,6 @@ const getImage = async (url = '', pixabayData = {}) => {
 //COMMENT get restcountry api data
 const getCity = async (url = ``) => {
     const request = await fetch(url)
-
     try {
         const data = await request.json();
         console.log('R:', data)
@@ -175,9 +166,13 @@ function updateUI(data) {
     close.innerHTML = 'Close';
     result.classList.add('animation')
     background.classList.add('filter');
-    close.classList.add('close-btn')
+    close.classList.add('close-btn');
+
+    updateCityInfo(data);
+    updateImg(data);
 }
 
+//Update city info from restcountry api
 function updateCityInfo(data) {
     document.getElementById('currencies').innerHTML = 'Currency: ' +  data[0].currencies[0].name;
     console.log(data[0].languages[0].name)
@@ -185,7 +180,7 @@ function updateCityInfo(data) {
     document.getElementById('language').innerHTML = 'Language: ' +  data[0].languages[0].name;
 }
 
-
+//update image from pixabay api
 function updateImg(imgData) {
     console.log(imgData.hits[0].id)
     const img = document.getElementById('imgContainer')

@@ -46,7 +46,7 @@ app.get('/all', (req, res) => {
 });
 
 app.post('/weather', (req, res) => {
-    const url = `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${req.body.latitude},${req.body.longitude},${req.body.departure}?units=auto`
+    const url = `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${req.body.latitude},${req.body.longitude},${req.body.departure}`
     const cityName = `${req.body.cityName}`
     const dates = `${req.body.departure}`
 
@@ -80,7 +80,6 @@ app.post('/img', (req, res) => {
     projectData = req.body;
     console.log("pixabay request: received");
     console.log(projectData);
-    // // res.send('post received');
     console.log(req.body)
 })
 app.get('/city', (req, res) => {
