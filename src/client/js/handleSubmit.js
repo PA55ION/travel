@@ -70,10 +70,8 @@ export function handleSubmit(e) {
                 document.getElementById('travel-info').innerHTML = `Your trip to ${cityName} is ${days} days away. It's time to Pack you bag :)`
                 getCity(`${restCountry}${cityName}`)
             }, 1500)
-        // 
     });
 }
-
 
 //GET geonames info to get city name, longitude and latitude
 const getCityInfo = async (url = '') => {
@@ -101,7 +99,6 @@ const postWeather = async (url = '', data = {}) => {
                 longitude: post.geonames[0].lng,
                 departure: leaving,
                 cityName: post.geonames[0].name,
-
             })
         }).then(res => res.json())
         .then(data => {
