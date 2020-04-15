@@ -69,7 +69,7 @@ export function handleSubmit(e) {
             setTimeout(() => {
                 document.getElementById('travel-info').innerHTML = `Your trip to ${cityName} is ${days} days away. It's time to Pack you bag :)`
                 getCity(`${restCountry}${cityName}`)
-            }, 15000)
+            }, 1500)
         // 
     });
 }
