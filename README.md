@@ -14,16 +14,16 @@ Download the project and run
 
 Create `.env` file and store your `DarkSky or Weatherbit api key` as `DARKSKY_API_key` and `Pixabay api key` as `PIXABAY_API_key` in the `.env` file. 
 
-If you are using `Weatherbit api key` Follow the step below
+## If you are using `Weatherbit` api Follow the step below
 1. create weather bit account and store api key in `.env` file as `WEATHERBIT_API_KEY`  
 2. Go to `src/server/server.js` and replace `const DARKSKY_API_KEY = process.env.DARKSKY_API_KEY;` to `const WEATHERBIT_API_KEY = process.env.WEATHERBIT_API_KEY`
 3. Replace `${DARKSKY_API_KEY}` in `app.post('/weather)` with `${WEATHERBIT_API_KEY}`
 
 
-## To run development environment
+## Development environment
 `npm run build-dev`
 
-## To run production environment
+## Production environment
 `npm run build-prod` and `npm start`
 
 
