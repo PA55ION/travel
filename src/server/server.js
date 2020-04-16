@@ -24,10 +24,7 @@ app.use(bodyParser.json());
 //COMMENT Middle ware
 app.use(cors());
 app.use(express.static('dist'));
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-  });
+
 console.log(__dirname)
 
 //COMMENT spin up the server
