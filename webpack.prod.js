@@ -11,9 +11,9 @@ module.exports = {
     entry: "./src/client/index.js",
     mode: "production",
     devtool: "source-map",
-    optimization: {
-        minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
-    },
+    // optimization: {
+    //     minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    // },
     output: {
         libraryTarget: "var",
         library: "Client",
