@@ -27,11 +27,6 @@ app.use(express.static('dist'));
 
 console.log(__dirname)
 
-//COMMENT spin up the server
-// app.listen(8000, function () {
-//     console.log('Example app listening on port 8000!')
-// });
-
 app.get('/', function (req, res) {
     // res.sendFile('dist/index.html')
     res.sendFile(path.resolve('src/client/views/index.html'))
