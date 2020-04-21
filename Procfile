@@ -1,1 +1,1 @@
-web:npm run build-prod && node src/server/app.js
+web:node src/server/app.js
