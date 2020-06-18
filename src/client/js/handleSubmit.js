@@ -1,6 +1,6 @@
 //Global variable 
 const submit = document.getElementById('search-button');
-const GEONAMES_URL = 'https://api.geonames.org/searchJSON?q=';
+const GEONAMES_URL = 'http://api.geonames.org/searchJSON?q=';
 const GEONAMES_USERNAME = '&maxRows=1&username=pa55ion';
 const PIXABAY_API_KEY = '15817547-0820fe2163586163356300c93'
 const PIXABAY_URL = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=`;

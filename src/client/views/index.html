@@ -84,19 +84,6 @@
         </div>
     </section>
     <script>
-      // Check that service workers are supported
-      // if ('serviceWorker' in navigator) {
-      //     // Use the window load event to keep the page load performant
-      //     window.addEventListener('load', () => {
-      //         navigator.serviceWorker.register('/service-worker.js')
-      //         .then(function(registration) {
-      //         console.log("Service Worker Registered", registration);
-      //     })
-      //       .catch(function(err) {
-      //           console.log("Service Worker Failed to Register", err);
-      //       })
-      //     });
-      // }
           if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js')
       .then(function(registration) {
@@ -118,15 +105,7 @@
       console.log('Service workers are not supported.');
     }
   </script>
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/7.14.3/firebase-app.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="/__/firebase/7.14.3/firebase-analytics.js"></script>
-
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
    
 </body>
 </html>
