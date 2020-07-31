@@ -20,7 +20,7 @@ let imgData;
 const city = document.getElementById('city');
 const leavingDate = document.getElementById('leaving-date')
 const temp = document.getElementById('temp');
-// const searchBox = new google.maps.places.SearchBox(location)
+
 
 
 
@@ -55,16 +55,16 @@ export function handleSubmit(e) {
     getCityInfo(`${GEONAMES_URL}${location}${GEONAMES_USERNAME}`)
         .then(function (data) {
             post = data;
-            getCityInfo('http://localhost:3000/city', {
+            getCityInfo('/city', {
                 locations: location,
                 name: post.geonames[0].name,
                 latitude: post.geonames[0].lat,
                 longitude: post.geonames[0].lng,
             })
         }).then(function (data) {
-            postWeather('http://localhost:3000/weather', {})
+            postWeather('/weather', {})
         }).then(function (data) {
-            getImage('http://localhost:3000/img', {})
+            getImage('/img', {})
         }).then(function(data) {
             setTimeout(() => {
                 document.getElementById('travel-info').innerHTML = `Your trip to ${cityName} is ${days} days away. It's time to Pack you bag :)`
